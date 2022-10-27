@@ -1,12 +1,15 @@
 <template>
-  <main class="columns is-gapless is-multiline">
+  <main class="columns is-gapless is-multiline" :class="{'modo-escuro' : escuroAtivo}">
     <div class="column is-one-quarter">
-      <BarraLateral />
+      <BarraLateral @aoTemaAlterado="trocarTema"/>
     </div>
-    <div class="column is-three-quarter">
+    <div class="column is-three-quarter conteudo">
       <FormularioTarefa @aoSalvarTarefa="salvarTarefa"/>
       <div class="lista">
         <Tarefa v-for="(tarefa,index) in tarefas" :key="index" :tarefa="tarefa"/>
+        <Box v-if="listaVazia">
+          <span>Você não está muito produtivo hoje!! =(</span>
+        </Box>
       </div>
     </div>
   </main>
@@ -18,6 +21,7 @@ import BarraLateral from './components/BarraLateral.vue'
 import FormularioTarefa from './components/FormularioTarefa.vue'
 import Tarefa from './components/Tarefa.vue'
 import ITarefa from './interfaces/ITarefa'
+import Box from './components/Box.vue';
 
 export default defineComponent({
   name: 'App',
@@ -25,15 +29,25 @@ export default defineComponent({
     BarraLateral,
     FormularioTarefa,
     Tarefa,
+    Box
   },
   data(){
     return{
-      tarefas: [] as ITarefa[]
+      tarefas: [] as ITarefa[],
+      escuroAtivo: false,
+    }
+  },
+  computed:{
+    listaVazia() : boolean{
+      return this.tarefas.length === 0
     }
   },
   methods:{
     salvarTarefa (tarefa: ITarefa){
       this.tarefas.push(tarefa)
+    },
+    trocarTema(escuroAtivo: boolean){
+      this.escuroAtivo = escuroAtivo
     }
   }
 });
@@ -42,5 +56,19 @@ export default defineComponent({
 <style>
 .lista{
   padding: 1.25rem;
+}
+
+main{
+  --bg-primario: #fff;
+  --texto-primario: #000;
+}
+
+main.modo-escuro{
+  --bg-primario: #2b2d42;
+  --texto-primario: #ddd;
+}
+
+.conteudo{
+  background-color: var(--bg-primario);
 }
 </style>
