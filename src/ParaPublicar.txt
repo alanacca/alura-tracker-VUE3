@@ -10,3 +10,7 @@ Agora você ira subir o que está no dist para a produção para testar, você p
 AGORA JÁ ESTÁ EM PRODUÇÃO!
 
 PARA DEIXAR DISPONÍVEL NA INTERNET:
+
+- No curso usou VERCEL -> https://vercel.com/
+- Seleciona o projeto do GitHUB que deseja colocar na rede
+- O próprio site vai preparar o projeto pra ti e subir pra INTERNET
