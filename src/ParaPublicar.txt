@@ -1,0 +1,12 @@
+1º faz o build 
+    - npm run build
+
+Agora você ira subir o que está no dist para a produção para testar, você pode fazer:
+    1º instalar um pacote npm global para simular um servidor
+        - sudo npm i -g http-server
+    2º prover esse arquivo html como se fosse um servidor
+        - http-server
+    
+AGORA JÁ ESTÁ EM PRODUÇÃO!
+
+PARA DEIXAR DISPONÍVEL NA INTERNET:
